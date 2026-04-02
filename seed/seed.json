@@ -1,0 +1,404 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "Blog Pro",
+		"description": "A premium blog template for EmDash CMS with editorial design, dark mode, and full-featured content management.",
+		"author": "EmDash Templates"
+	},
+	"settings": {
+		"title": "Blog Pro",
+		"tagline": "Ideas worth sharing"
+	},
+	"collections": [
+		{
+			"slug": "posts",
+			"label": "Posts",
+			"labelSingular": "Post",
+			"supports": ["drafts", "revisions", "search", "seo"],
+			"commentsEnabled": true,
+			"fields": [
+				{ "slug": "title", "label": "Title", "type": "string", "required": true, "searchable": true },
+				{ "slug": "featured_image", "label": "Featured Image", "type": "image" },
+				{ "slug": "content", "label": "Content", "type": "portableText", "searchable": true },
+				{ "slug": "excerpt", "label": "Excerpt", "type": "text" }
+			]
+		},
+		{
+			"slug": "pages",
+			"label": "Pages",
+			"labelSingular": "Page",
+			"supports": ["drafts", "revisions", "search", "seo"],
+			"fields": [
+				{ "slug": "title", "label": "Title", "type": "string", "required": true, "searchable": true },
+				{ "slug": "content", "label": "Content", "type": "portableText", "searchable": true }
+			]
+		}
+	],
+	"taxonomies": [
+		{
+			"name": "category",
+			"label": "Categories",
+			"labelSingular": "Category",
+			"hierarchical": true,
+			"collections": ["posts"],
+			"terms": [
+				{ "slug": "technology", "label": "Technology" },
+				{ "slug": "design", "label": "Design" },
+				{ "slug": "productivity", "label": "Productivity" },
+				{ "slug": "business", "label": "Business" }
+			]
+		},
+		{
+			"name": "tag",
+			"label": "Tags",
+			"labelSingular": "Tag",
+			"hierarchical": false,
+			"collections": ["posts"],
+			"terms": [
+				{ "slug": "web-development", "label": "Web Development" },
+				{ "slug": "javascript", "label": "JavaScript" },
+				{ "slug": "css", "label": "CSS" },
+				{ "slug": "ui-ux", "label": "UI/UX" },
+				{ "slug": "remote-work", "label": "Remote Work" },
+				{ "slug": "ai", "label": "AI" },
+				{ "slug": "startups", "label": "Startups" },
+				{ "slug": "open-source", "label": "Open Source" },
+				{ "slug": "performance", "label": "Performance" },
+				{ "slug": "tools", "label": "Tools" }
+			]
+		}
+	],
+	"menus": [
+		{
+			"name": "primary",
+			"label": "Primary Navigation",
+			"items": [
+				{ "type": "custom", "label": "Home", "url": "/" },
+				{ "type": "custom", "label": "About", "url": "/pages/about" },
+				{ "type": "custom", "label": "Posts", "url": "/posts" }
+			]
+		}
+	],
+	"widgetAreas": [
+		{
+			"name": "sidebar",
+			"label": "Sidebar",
+			"description": "Widget area displayed on single post pages",
+			"widgets": [
+				{
+					"type": "component",
+					"componentId": "core:search",
+					"title": "Search"
+				},
+				{
+					"type": "component",
+					"componentId": "core:categories",
+					"title": "Categories"
+				},
+				{
+					"type": "component",
+					"componentId": "core:tags",
+					"title": "Tags"
+				},
+				{
+					"type": "component",
+					"componentId": "core:recent-posts",
+					"title": "Recent Posts",
+					"settings": { "count": 5, "showDate": true }
+				}
+			]
+		},
+		{
+			"name": "footer",
+			"label": "Footer",
+			"description": "Footer widget area",
+			"widgets": [
+				{
+					"type": "content",
+					"title": "About Blog Pro",
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [{ "_type": "span", "text": "Blog Pro is a premium template for EmDash CMS. Built for writers, creators, and teams who care about the reading experience." }]
+						}
+					]
+				}
+			]
+		}
+	],
+	"bylines": [
+		{
+			"id": "byline-editorial",
+			"slug": "editorial",
+			"displayName": "Blog Pro Editorial"
+		},
+		{
+			"id": "byline-guest",
+			"slug": "guest-contributor",
+			"displayName": "Guest Contributor",
+			"isGuest": true
+		}
+	],
+	"content": {
+		"posts": [
+			{
+				"id": "post-1",
+				"slug": "building-modern-web-experiences",
+				"status": "published",
+				"data": {
+					"title": "Building Modern Web Experiences That Users Actually Love",
+					"excerpt": "The web has evolved dramatically. Users expect fast, accessible, and beautifully designed experiences. Here's how to deliver on all fronts.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop",
+							"alt": "Code on a laptop screen with warm lighting",
+							"filename": "modern-web-experiences.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The web platform has undergone a remarkable transformation in the past few years. With the rise of edge computing, server-side rendering frameworks, and increasingly powerful CSS capabilities, we're entering a golden age of web development where performance and developer experience are no longer at odds." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Performance Is a Feature" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Every 100 milliseconds of latency costs businesses 1% in revenue. That's not a theoretical number — it's been proven by Amazon, Google, and countless other companies who've invested heavily in performance optimization. When we talk about building modern web experiences, performance isn't an afterthought; it's a core feature." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Edge computing has changed the game entirely. By running your application logic closer to your users — on servers distributed across the globe — you can achieve response times that were previously impossible. Platforms like Cloudflare Workers execute your code in over 300 cities worldwide, meaning your user in Tokyo gets the same snappy experience as your user in New York." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Design With Intention" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Beautiful design isn't about following trends — it's about making intentional choices that serve your users. The best interfaces feel invisible. They guide users toward their goals without friction, without confusion, and without unnecessary complexity." }] },
+						{ "_type": "block", "style": "blockquote", "children": [{ "_type": "span", "text": "Good design is as little design as possible. Less, but better — because it concentrates on the essential aspects, and the products are not burdened with non-essentials." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Typography, spacing, and color choices matter more than any fancy animation. A well-set paragraph with proper line height and measure will always outperform a page full of parallax effects and gradient borders. Focus on the fundamentals, and the rest will follow." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Accessibility Is Non-Negotiable" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Building for the web means building for everyone. Accessibility isn't a checkbox — it's a mindset. Semantic HTML, keyboard navigation, proper color contrast, and screen reader support aren't extras. They're the baseline. When you build accessible experiences, you build better experiences for everyone." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "The Future Is Hybrid" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The future of web development isn't purely client-side or purely server-side — it's a thoughtful blend of both. Server-side rendering for initial page loads, client-side interactivity where it matters, and edge computing for global performance. The frameworks that embrace this hybrid model — Astro, Next.js, Remix — are leading the way toward a faster, more capable web." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-editorial" }],
+				"taxonomies": {
+					"category": ["technology"],
+					"tag": ["web-development", "performance", "ui-ux"]
+				}
+			},
+			{
+				"id": "post-2",
+				"slug": "art-of-minimalist-design",
+				"status": "published",
+				"data": {
+					"title": "The Art of Minimalist Design in a Maximalist World",
+					"excerpt": "In an era of information overload, minimalist design isn't just an aesthetic choice — it's a survival strategy for both creators and consumers.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1200&h=800&fit=crop",
+							"alt": "Clean minimal workspace with white desk and plant",
+							"filename": "minimalist-design.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "We live in an age of sensory overload. Every app, website, and digital product competes for our attention with bold colors, animated elements, and endless notifications. In this maximalist landscape, minimalist design stands out not by shouting louder, but by whispering something meaningful." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Less Visual Noise, More Clarity" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Minimalism in design isn't about removing things until nothing is left. It's about removing everything that doesn't serve a purpose. Every element on the screen should earn its place. If a border doesn't help distinguish content, remove it. If an icon doesn't improve comprehension, replace it with text. If an animation doesn't guide the user, disable it." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The most powerful tool in minimalist design is whitespace. It gives content room to breathe, creates visual hierarchy, and guides the eye naturally. When you look at the websites of companies like Apple, Stripe, or Linear, you'll notice generous spacing between elements. This isn't wasted space — it's strategic silence." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Typography as Architecture" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "In minimalist design, typography does the heavy lifting. Without decorative elements to rely on, your type choices become the primary vehicle for personality, hierarchy, and emotion. A well-chosen serif for headlines paired with a clean sans-serif for body text can create a sophisticated reading experience that needs nothing else." }] },
+						{ "_type": "block", "style": "blockquote", "children": [{ "_type": "span", "text": "Typography is the craft of endowing human language with a durable visual form. — Robert Bringhurst" }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Color With Purpose" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "A minimalist color palette doesn't mean black and white. It means choosing colors with intention. One or two accent colors, used consistently, can create a stronger brand identity than a rainbow of gradients. Constraint breeds creativity — when you limit your palette, every color choice becomes more meaningful." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Minimalism as Practice" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Adopting minimalist design is a continuous practice, not a one-time decision. It requires discipline to resist the temptation to add just one more feature, one more color, one more animation. But the reward is clarity — for your users and for yourself. In a world drowning in complexity, simplicity is a gift." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-editorial" }],
+				"taxonomies": {
+					"category": ["design"],
+					"tag": ["ui-ux", "css"]
+				}
+			},
+			{
+				"id": "post-3",
+				"slug": "remote-work-productivity-systems",
+				"status": "published",
+				"data": {
+					"title": "Building Productivity Systems That Work for Remote Teams",
+					"excerpt": "After years of remote work experimentation, certain patterns have emerged. Here's what actually works for distributed teams.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=800&fit=crop",
+							"alt": "Team collaborating around laptops in a bright workspace",
+							"filename": "remote-productivity.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Remote work isn't new, but the scale at which organizations have adopted it certainly is. After several years of widespread distributed work, we've moved past the initial scramble and into a more nuanced understanding of what makes remote teams thrive. Spoiler: it's not about the tools." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Async by Default" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The single most impactful shift a remote team can make is defaulting to asynchronous communication. Not everything needs a meeting. Not everything needs an immediate response. When you write things down instead of scheduling a call, you create a searchable, referenceable knowledge base. You also respect the focus time of your colleagues across different time zones." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Great async communication means being thorough in your written messages. Include context, link to relevant documents, explain your reasoning, and propose next steps. A well-written document that takes 30 minutes to craft can save hours of meetings and back-and-forth messaging." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Structured Rituals, Not More Meetings" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Remote teams need rituals — predictable touchpoints that create rhythm and connection. But these don't have to be synchronous meetings. A weekly written standup, a monthly retrospective document, or a daily async check-in can provide structure without consuming everyone's calendar." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Trust and Autonomy" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Productivity in remote teams ultimately comes down to trust. If managers are tracking mouse movements or requiring cameras on during every meeting, the problem isn't remote work — it's a culture issue. The highest-performing remote teams give people autonomy to manage their own time and focus on outcomes rather than hours logged." }] },
+						{ "_type": "block", "style": "blockquote", "children": [{ "_type": "span", "text": "The best work happens when people have the freedom to do it in the way that works best for them." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "The Tools That Actually Matter" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "After trying dozens of tools, most successful remote teams settle on a simple stack: a good document editor, a messaging platform, a project tracker, and a video call tool for the occasional sync. The tool matters far less than the habits and norms you build around it." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-editorial" }],
+				"taxonomies": {
+					"category": ["productivity"],
+					"tag": ["remote-work", "tools"]
+				}
+			},
+			{
+				"id": "post-4",
+				"slug": "ai-changing-developer-workflows",
+				"status": "published",
+				"data": {
+					"title": "How AI Is Quietly Changing Every Developer's Daily Workflow",
+					"excerpt": "From code completion to architecture decisions, AI tools are reshaping how developers work. The changes are more subtle — and more profound — than you might think.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop",
+							"alt": "Abstract visualization of neural network connections",
+							"filename": "ai-developer-workflows.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The conversation around AI in software development tends to oscillate between two extremes: either AI will replace all developers, or it's just a fancy autocomplete. The reality, as usual, is more interesting than either extreme. AI tools are genuinely transforming how developers work, but not in the ways most people expect." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Beyond Code Completion" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Yes, AI-powered code completion is useful. But the more transformative changes are happening in areas like code review, debugging, and documentation. When you can ask an AI to explain a complex regex, review a pull request for potential issues, or generate API documentation from your code, you're not replacing developers — you're amplifying them." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The developers who are benefiting most from AI aren't the ones trying to generate entire applications from a prompt. They're the ones using AI as a thinking partner — a rubber duck that actually talks back. Explaining your architecture to an AI, asking it to poke holes in your approach, or having it suggest edge cases you haven't considered — these are the high-value use cases." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "The Skill Shift" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "AI is shifting the most valued developer skills from syntax knowledge toward system thinking. When boilerplate code writes itself, the premium shifts to understanding architecture, making good design decisions, and knowing what to build. The developers who thrive will be the ones who can clearly articulate problems and evaluate solutions — regardless of who or what wrote the code." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Maintaining Quality in an AI-Assisted World" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The biggest risk with AI-generated code isn't that it's wrong — it's that it's plausible. Code that looks correct, passes a quick review, but has subtle issues in error handling, security, or edge cases. This makes code review and testing more important than ever. AI makes it easier to write code quickly, which means we need to be even more disciplined about verifying that code is correct." }] },
+						{ "_type": "block", "style": "blockquote", "children": [{ "_type": "span", "text": "AI doesn't eliminate the need for expertise. It raises the stakes for having it." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-guest" }],
+				"taxonomies": {
+					"category": ["technology"],
+					"tag": ["ai", "tools", "web-development"]
+				}
+			},
+			{
+				"id": "post-5",
+				"slug": "open-source-sustainable-future",
+				"status": "published",
+				"data": {
+					"title": "Can Open Source Have a Sustainable Future?",
+					"excerpt": "The open source ecosystem powers the modern internet, but the maintainers behind it are burning out. What needs to change?",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=800&fit=crop",
+							"alt": "Git branch visualization on dark background",
+							"filename": "open-source-future.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Open source software is the foundation of the modern internet. From Linux to Node.js, from React to Kubernetes, virtually every technology company depends on software that's freely available and maintained by communities of developers. But this model, for all its successes, has a sustainability problem that the industry can no longer afford to ignore." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "The Maintainer Burnout Crisis" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Behind every widely-used open source project is usually a small group of maintainers — sometimes just one person — who donate their time, energy, and mental health to keep the software running. They triage issues, review pull requests, manage releases, respond to security vulnerabilities, and deal with entitled users who demand features and fixes for free." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The burnout rate among open source maintainers is staggering. Projects that millions of people depend on get abandoned because their maintainers simply can't continue. This isn't a failure of the individuals — it's a systemic problem with how we fund and support critical infrastructure." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Models That Show Promise" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Several funding and sustainability models have emerged in recent years. GitHub Sponsors and Open Collective provide direct funding channels. Companies like Astro and Tailwind have built sustainable businesses around open source cores. Foundations like the Linux Foundation and Apache provide institutional support for critical projects." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The open-core model — where the core software is free but commercial features require a license — has proven particularly viable. It aligns incentives: the company needs the open source project to thrive, and the project gets dedicated full-time developers." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "What Companies Can Do" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "If your company depends on open source (and it does), you have a responsibility to contribute back. This doesn't always mean money — though that helps. Contributing code, documentation, bug reports, and triage time are all valuable. Some companies now give engineers dedicated time to contribute to the open source projects they depend on. This should be the norm, not the exception." }] },
+						{ "_type": "block", "style": "blockquote", "children": [{ "_type": "span", "text": "We can't build a trillion-dollar industry on the backs of volunteers and then act surprised when the foundations crack." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-editorial" }],
+				"taxonomies": {
+					"category": ["business"],
+					"tag": ["open-source", "startups"]
+				}
+			},
+			{
+				"id": "post-6",
+				"slug": "css-renaissance-modern-layouts",
+				"status": "published",
+				"data": {
+					"title": "The CSS Renaissance: Modern Layouts Without the Framework Tax",
+					"excerpt": "CSS has evolved more in the last three years than in the previous ten. Container queries, cascade layers, and subgrid are changing everything.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop",
+							"alt": "Colorful abstract geometric pattern",
+							"filename": "css-renaissance.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "For years, the narrative in web development has been that CSS is hard, CSS is broken, and you need a framework to write it properly. Tailwind, CSS-in-JS, CSS Modules — all attempts to tame the perceived chaos of the cascade. But while we were busy building abstractions, CSS itself was evolving at a breathtaking pace." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Container Queries Change Everything" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "For over a decade, developers asked for container queries — the ability to style elements based on the size of their parent container, not just the viewport. Now we have them, and they're transforming how we think about responsive design. Instead of writing media queries for every breakpoint, you can write truly modular components that adapt to whatever space they're given." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "CSS Variables and the Theme Revolution" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Custom properties (CSS variables) have been around for a while, but their full potential is only now being realized. Combined with the :root selector and media queries, you can build complete theming systems — including dark mode — with zero JavaScript. Dynamic, runtime-adjustable design tokens that cascade through your entire stylesheet." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The pattern is simple but powerful: define your design tokens as CSS variables on :root, override them with a class or media query for dark mode, and every element in your page responds automatically. No React context providers, no theme objects, no runtime overhead." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Subgrid: The Missing Piece" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "CSS Grid was revolutionary, but it had a limitation: nested grids couldn't participate in their parent's grid tracks. Subgrid fixes this, enabling truly complex layouts where child elements align to the parent grid. Card layouts where titles, images, and footers all align perfectly — without JavaScript, without hacks." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Do You Still Need a Framework?" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "The honest answer is: it depends. Frameworks like Tailwind provide value through conventions, consistency, and speed. But if you're someone who understands CSS fundamentals, the gap between what frameworks offer and what vanilla CSS can do has never been smaller. For many projects, a well-organized stylesheet with CSS variables, modern selectors, and container queries is all you need." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-editorial" }],
+				"taxonomies": {
+					"category": ["technology"],
+					"tag": ["css", "web-development", "performance"]
+				}
+			},
+			{
+				"id": "post-7",
+				"slug": "startup-lessons-year-one",
+				"status": "published",
+				"data": {
+					"title": "Seven Lessons From Our First Year Building a Startup",
+					"excerpt": "We launched a product, made every mistake in the book, and somehow survived year one. Here's what we learned the hard way.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=800&fit=crop",
+							"alt": "Team working together at a modern office table with laptops",
+							"filename": "startup-lessons.jpg"
+						}
+					},
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "A year ago, we quit our jobs to build a product we believed the world needed. Twelve months later, we're still here — though the product, the team, and our understanding of the market look nothing like what we imagined on day one. Here are the seven most important lessons from our first year." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Ship Before You're Ready" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "We spent three months building before we showed our product to a single user. That was three months too long. The feedback we got from our first beta users fundamentally changed our direction. Features we thought were essential were ignored. Things we considered minor were the reason people signed up. Ship early, ship often, and let real users guide your priorities." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Talk to Users Constantly" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Not through surveys. Not through analytics dashboards. Through actual conversations. We made it a rule to talk to at least three users every week, and those conversations consistently provided insights that no amount of data analysis could match. People will tell you things in conversation that they'd never write in a feedback form." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Simplify Ruthlessly" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Our initial product had 15 features. Our successful product has 4. Every feature you add increases complexity, maintenance burden, and cognitive load for users. The hardest skill in product development isn't building — it's deciding what not to build. Say no to good ideas so you can say yes to great ones." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Revenue Validates Better Than Feedback" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "People will tell you they love your product and would definitely pay for it. Then they don't. The only feedback that truly matters is someone reaching for their wallet. We wasted months chasing metrics like signups and engagement when we should have been focused on a single question: will someone pay for this?" }] },
+						{ "_type": "block", "style": "blockquote", "children": [{ "_type": "span", "text": "If you're not embarrassed by the first version of your product, you've launched too late." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Take Care of Yourselves" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Startup culture glorifies burnout, but exhausted founders make terrible decisions. Sleep, exercise, and time away from the screen aren't luxuries — they're competitive advantages. The marathon metaphor is overused but accurate: you need to pace yourself for the long run, not sprint until you collapse." }] }
+					]
+				},
+				"bylines": [{ "byline": "byline-guest" }],
+				"taxonomies": {
+					"category": ["business"],
+					"tag": ["startups", "tools"]
+				}
+			}
+		],
+		"pages": [
+			{
+				"id": "about",
+				"slug": "about",
+				"status": "published",
+				"data": {
+					"title": "About",
+					"content": [
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Blog Pro is a premium template for EmDash CMS, designed for writers, creators, and teams who believe that the reading experience matters as much as the writing itself." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Our Philosophy" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "We believe that great content deserves great presentation. Blog Pro combines editorial-grade typography with modern web technologies to create a reading experience that respects both the author's voice and the reader's time." }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Built on EmDash CMS and powered by Cloudflare's global edge network, Blog Pro delivers fast, reliable, and beautifully rendered content to readers anywhere in the world." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Features" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Blog Pro includes everything you need to run a professional publication: responsive design with dark mode, full-text search, RSS feeds, SEO optimization, categories and tags, related posts, reading time estimates, and a clean admin interface for managing all your content." }] },
+						{ "_type": "block", "style": "h2", "children": [{ "_type": "span", "text": "Get Started" }] },
+						{ "_type": "block", "style": "normal", "children": [{ "_type": "span", "text": "Visit the admin panel to start creating your own content. Replace these demo posts with your own stories, adjust the site settings, and make it yours." }] }
+					]
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,49 @@
+---
+import { getEmDashCollection, getSiteSettings } from "emdash";
+import Base from "../layouts/Base.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
+import PostCard from "../components/PostCard.astro";
+
+const settings = await getSiteSettings();
+const siteTitle = settings?.title || "Blog Pro";
+
+const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
+	orderBy: { published_at: "desc" },
+	limit: 10,
+});
+Astro.cache.set(cacheHint);
+
+const sortedPosts = posts.toSorted((a, b) => {
+	const dateA = a.data.publishedAt?.getTime() ?? 0;
+	const dateB = b.data.publishedAt?.getTime() ?? 0;
+	return dateB - dateA;
+});
+
+const [featured, ...rest] = sortedPosts;
+---
+<Base title={siteTitle} description={settings?.tagline}>
+	{sortedPosts.length === 0 ? (
+		<section class="empty-state">
+			<h2>No posts yet</h2>
+			<p>Create your first post in the admin panel to get started.</p>
+			<a href="/_emdash/admin/content/posts/new">Create a post</a>
+		</section>
+	) : (
+		<>
+			{featured && <FeaturedPost post={featured} />}
+
+			{rest.length > 0 && (
+				<>
+					<div class="section-heading">
+						<h2>Latest Posts</h2>
+					</div>
+					<div class="posts-grid">
+						{rest.map(post => (
+							<PostCard post={post} />
+						))}
+					</div>
+				</>
+			)}
+		</>
+	)}
+</Base>

@@ -1,0 +1,38 @@
+---
+import { getEntryTerms } from "emdash";
+import { Image } from "emdash/ui";
+import { getReadingTime } from "../utils/reading-time";
+
+interface Props {
+	post: any;
+}
+
+const { post } = Astro.props;
+const readingTime = getReadingTime(post.data.content);
+const categories = await getEntryTerms("posts", post.data.id, "category");
+const publishedDate = post.data.publishedAt?.toLocaleDateString("en-US", {
+	month: "short",
+	day: "numeric",
+	year: "numeric",
+});
+---
+<article class="post-card">
+	<a href={`/posts/${post.id}`}>
+		{post.data.featured_image && (
+			<div class="post-card-image">
+				<Image image={post.data.featured_image} />
+			</div>
+		)}
+		<div class="post-card-body">
+			{categories.length > 0 && (
+				<span class="post-card-category">{categories[0].label}</span>
+			)}
+			<h3>{post.data.title}</h3>
+			{post.data.excerpt && <p>{post.data.excerpt}</p>}
+			<div class="post-card-meta">
+				<span>{post.data.byline?.displayName || "Staff"}</span>
+				<span>{publishedDate} &middot; {readingTime} min</span>
+			</div>
+		</div>
+	</a>
+</article>

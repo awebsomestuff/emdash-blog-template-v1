@@ -1,0 +1,15 @@
+---
+interface Props {
+	tags: Array<{ slug: string; label: string }>;
+	basePath?: string;
+}
+
+const { tags, basePath = "/tag" } = Astro.props;
+---
+{tags.length > 0 && (
+	<div class="tag-list">
+		{tags.map(tag => (
+			<a href={`${basePath}/${tag.slug}`} class="tag">{tag.label}</a>
+		))}
+	</div>
+)}

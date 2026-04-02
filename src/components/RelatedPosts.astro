@@ -1,0 +1,43 @@
+---
+import { getEmDashCollection, getEntryTerms } from "emdash";
+import PostCard from "./PostCard.astro";
+
+interface Props {
+	currentPostId: string;
+	currentPostDataId: string;
+}
+
+const { currentPostId, currentPostDataId } = Astro.props;
+
+const categories = await getEntryTerms("posts", currentPostDataId, "category");
+let relatedPosts: any[] = [];
+
+if (categories.length > 0) {
+	const { entries } = await getEmDashCollection("posts", {
+		where: { category: categories[0].slug },
+		orderBy: { published_at: "desc" },
+		limit: 4,
+	});
+	relatedPosts = entries.filter(p => p.id !== currentPostId).slice(0, 3);
+}
+
+if (relatedPosts.length === 0) {
+	const { entries } = await getEmDashCollection("posts", {
+		orderBy: { published_at: "desc" },
+		limit: 4,
+	});
+	relatedPosts = entries.filter(p => p.id !== currentPostId).slice(0, 3);
+}
+---
+{relatedPosts.length > 0 && (
+	<section class="related-posts">
+		<div class="section-heading">
+			<h2>Related Posts</h2>
+		</div>
+		<div class="posts-grid">
+			{relatedPosts.map(post => (
+				<PostCard post={post} />
+			))}
+		</div>
+	</section>
+)}

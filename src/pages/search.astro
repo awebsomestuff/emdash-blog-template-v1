@@ -1,0 +1,14 @@
+---
+import LiveSearch from "emdash/ui/search";
+import Base from "../layouts/Base.astro";
+---
+<Base title="Search">
+	<div class="search-page">
+		<h1>Search</h1>
+		<LiveSearch
+			placeholder="Search posts and pages..."
+			collections={["posts", "pages"]}
+			inputClass="site-search-input"
+		/>
+	</div>
+</Base>

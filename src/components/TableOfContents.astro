@@ -1,0 +1,55 @@
+---
+import type { PortableTextBlock } from "emdash";
+
+interface Props {
+	content?: PortableTextBlock[];
+}
+
+const { content } = Astro.props;
+
+interface TocItem {
+	text: string;
+	slug: string;
+	level: number;
+}
+
+const headings: TocItem[] = [];
+
+if (content) {
+	for (const block of content) {
+		if (block._type === "block" && block.style && /^h[2-3]$/.test(block.style)) {
+			const text = (block.children as any[])
+				?.filter((c: any) => c._type === "span")
+				.map((c: any) => c.text)
+				.join("") || "";
+			if (text) {
+				const slug = text
+					.toLowerCase()
+					.replace(/[^\w\s-]/g, "")
+					.replace(/\s+/g, "-")
+					.replace(/-+/g, "-")
+					.trim();
+				headings.push({
+					text,
+					slug,
+					level: parseInt(block.style.charAt(1)),
+				});
+			}
+		}
+	}
+}
+---
+{headings.length > 0 && (
+	<nav class="toc" aria-label="Table of contents">
+		<div class="toc-title">On this page</div>
+		<ul class="toc-list">
+			{headings.map(h => (
+				<li>
+					<a href={`#${h.slug}`} class={h.level === 3 ? "toc-h3" : ""}>
+						{h.text}
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+)}

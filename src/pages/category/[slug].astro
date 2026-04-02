@@ -1,0 +1,47 @@
+---
+import { getTerm, getEmDashCollection } from "emdash";
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+
+const { slug } = Astro.params;
+const term = slug ? await getTerm("category", slug) : null;
+if (!term) return Astro.redirect("/404");
+
+const cursor = Astro.url.searchParams.get("cursor") ?? undefined;
+
+const { entries: posts, nextCursor, cacheHint } = await getEmDashCollection("posts", {
+	where: { category: term.slug },
+	orderBy: { published_at: "desc" },
+	limit: 12,
+	cursor,
+});
+Astro.cache.set(cacheHint);
+---
+<Base title={`${term.label}`} description={`Posts in ${term.label}`}>
+	<div class="archive-header">
+		<h1>{term.label}</h1>
+		<p>All posts in this category</p>
+	</div>
+
+	{posts.length === 0 ? (
+		<section class="empty-state">
+			<h2>No posts in this category yet</h2>
+			<p>Check back later for new content.</p>
+			<a href="/posts">Browse all posts</a>
+		</section>
+	) : (
+		<>
+			<div class="posts-grid">
+				{posts.map(post => (
+					<PostCard post={post} />
+				))}
+			</div>
+
+			{nextCursor && (
+				<div class="pagination">
+					<a href={`?cursor=${nextCursor}`}>Load more &rarr;</a>
+				</div>
+			)}
+		</>
+	)}
+</Base>
